@@ -1,20 +1,31 @@
-# Unity week 5: Two-dimensional scene-building and path-finding
+# TileMap_Generator 
 
-A project with step-by-step scenes illustrating how to construct a 2D scene using tilemaps,
-and how to do path-finding using the BFS algorithm.
+## based on [This GitHub Repo](https://github.com/gamedev-at-ariel/05-tilemap-pathfinding)
+
+###
+
+### I'm modified the generator from 2 tiles to userInput Tiles, just drag ur tiles to Tiles in the script
+### example pic
+
+![](https://github.com/Lba-universe/TileMap_Generator/blob/main/pics/tilemap2.png)
+
+###
+
+there are 2 scripts 
+1. generate matrix of random ints - between 0 and num of tiles given,
+also it has smoothing method that attach smilar tiles togther to make realistic tilemap.
+[Script-MatrixGenerator](https://github.com/Lba-universe/TileMap_Generator/blob/main/Assets/Scripts/TilesGenerator.cs)
+
+2. is to convert the matrix of ints - to tiles each number has index of uniqe tile in the scene
+[Script-TileMapGenerator](https://github.com/Lba-universe/TileMap_Generator/blob/main/Assets/Scripts/TileMapGenerator.cs)
+
+every changed line commented with "my change".
+
+###
+### in this example there is 5 diffrent tiles
+
+![](https://github.com/Lba-universe/TileMap_Generator/blob/main/pics/tilemap1.png)
+
+![](https://github.com/Lba-universe/TileMap_Generator/blob/main/pics/tilemap3.png)
 
 
-## Credits
-
-Graphics:
-* [Ultima 4 Graphics](https://github.com/jahshuwaa/u4graphics) by Joshua Steele.
-
-Online course:
-* [Unity 2D](https://www.udemy.com/course/unitycourse/learn/lecture/10246496), a Udemy course by Gamedev.tv.
-* [Unity RPG](https://www.gamedev.tv/p/unity-rpg/?product_id=1503859&coupon_code=JOINUS).
-
-Procedural generation:
-* [Habrador - Unity Programming Patterns](https://github.com/Habrador/Unity-Programming-Patterns#7-double-buffer)
-
-Programming:
-* Erel Segal-Halevi
