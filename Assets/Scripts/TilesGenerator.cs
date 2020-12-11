@@ -1,5 +1,9 @@
 ﻿using System;
 
+
+/**
+ * This class demonstrates matrix Generator for int in given range.
+ */
 public class TilesGenerator
 {
 

@@ -4,24 +4,17 @@ using System.Collections;
 
 
 /**
- * This class demonstrates the CaveGenerator on a Tilemap.
- * 
- * By: Erel Segal-Halevi
- * Since: 2020-12
+ * This class demonstrates the Generator on a Tilemap.
  */
 
 public class TileMapGenerator : MonoBehaviour
 {
     [SerializeField] Tilemap tilemap = null;
 
-    [Tooltip("The tile that represents a wall (an impassable block)")]
+    // *** my change ****
+    [Tooltip("Tiles of the Scene")]
     [SerializeField] TileBase[] Tiles = null;
 
-
-/*    [Tooltip("The percent of walls in the initial random map")]
-    [Range(0, 1)]
-    [SerializeField] float randomFillPercent = 0.5f;
-*/
     [Tooltip("Length and height of the grid")]
     [SerializeField] int gridSize = 100;
 
@@ -31,19 +24,19 @@ public class TileMapGenerator : MonoBehaviour
     [Tooltip("For how long will we pause between each simulation step so we can look at the result?")]
     [SerializeField] float pauseTime = 1f;
 
-    private TilesGenerator caveGenerator;
+    private TilesGenerator Generator;
 
     void Start()
     {
-        //To get the same random numbers each time we run the script
-        //Random.InitState(100);
 
-        caveGenerator = new TilesGenerator(gridSize, Tiles.Length);
+        // *** my change ****
 
-        caveGenerator.RandomizeMap();
+        Generator = new TilesGenerator(gridSize, Tiles.Length);
+
+        Generator.RandomizeMap();
 
         //For testing that init is working
-        GenerateAndDisplayTexture(caveGenerator.GetMap());
+        GenerateAndDisplayTexture(Generator.GetMap());
 
         //Start the simulation
         StartCoroutine(SimulateCavePattern());
@@ -58,17 +51,18 @@ public class TileMapGenerator : MonoBehaviour
             yield return new WaitForSeconds(pauseTime);
 
             //Calculate the new values
-            caveGenerator.SmoothMap();
+            Generator.SmoothMap();
 
             //Generate texture and display it on the plane
-            GenerateAndDisplayTexture(caveGenerator.GetMap());
+            GenerateAndDisplayTexture(Generator.GetMap());
         }
         Debug.Log("Simulation completed!");
     }
 
 
 
-    //Generate a black or white texture depending on if the pixel is cave or wall
+    //Generate a tiles texture depending on if the index 
+    // each index represent uniqe tile
     //Display the texture on a plane
     private void GenerateAndDisplayTexture(int[,] data)
     {
@@ -78,6 +72,8 @@ public class TileMapGenerator : MonoBehaviour
             {
                 var position = new Vector3Int(x, y, 0);
                 var indexOfTile = data[x, y];
+                // *** my change ****
+
                 var tile = Tiles[indexOfTile];
                 tilemap.SetTile(position, tile);
             }
